@@ -1,1 +1,32 @@
-<%= @user.name %>, <%= @user.email %>
+<div class="profile clearfix">
+<div class="main">
+	<h2>
+		<!-- slug in this fake img bc I'm on the plane and can't install the gravatar plugin -->
+		 <img class="gravatar" alt = "IMG" scr = "#">
+		<%= h @user.name %> 
+	</h2>
+</div>
+<div class="sidebar round">
+	<dl>
+		<dt>
+			Name
+		</dt>
+		<dd>
+			<%= h @user.name %>
+		</dd>
+		<dt>
+			Email
+		</dt>
+		<dd>
+			<%= @user.email %>
+		</dd>
+		<dt>
+			URL
+		</dt>
+		<dd>
+			<%= link_to user_path(@user), @user %>
+		</dd>
+	</dl>
+</div>
+
+</div>

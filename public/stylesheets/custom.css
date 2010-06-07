@@ -107,3 +107,29 @@ a.signup_button {
 #footer .navigation {
   float: none;
 }
+
+/* User show page */
+
+.profile {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.main {
+  width: 50%;
+  padding: 1em;
+  float: left;
+}
+
+.sidebar {
+  width: 40%;
+  padding: 1em;
+  vertical-align: top;
+  background: #ffc;
+  float: right;
+}
+
+.profile img.gravatar {
+  border: 1px solid #999;
+  margin-bottom: -15px;
+}

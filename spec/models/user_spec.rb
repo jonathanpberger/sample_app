@@ -27,15 +27,17 @@ describe User do
   it "should create a new instance given valid attributes" do
     User.create!(@attr)
   end
+
   it "should require a name" do
     no_name_user = User.new(@attr.merge(:name  => ""))
     no_name_user.should_not be_valid
   end
+
   it "should require an email address" do
     no_email_user = User.new(@attr.merge(:email  => ""))
     no_email_user.should_not be_valid
   end
-  
+
   it "should reject names that are too long" do
     long_name = "a" * 51
     long_name_user = User.new(@attr.merge(:name  => long_name))
@@ -69,7 +71,6 @@ describe User do
     User.create!(@attr.merge(:email  => upcased_email))
     user_with_dupe_email = User.new(@attr)
     user_with_dupe_email.should_not be_valid
-    
   end
 
   describe  "password validations" do
@@ -117,6 +118,25 @@ describe User do
       it "should be false if passwords don't match" do
         @user.has_password?("invalid").should be_false
       end
+    end
+    
+    describe "authenticate method" do
+      
+      it "should return nil on email/password mismatch" do
+        wrong_password_user = User.authenticate(@attr[:email], "wrongpass")
+        wrong_password_user.should be_nil
+      end
+
+      it "should return nil for an email address with no user" do
+        nonexistant_user = User.authenticate("bar@fooaoeu.com", @attr[:password])
+        nonexistant_user.should be_nil
+      end
+
+      it "should returen the user on email/password match" do
+        matching_user = User.authenticate(@attr[:email], @attr[:password])
+        matching_user.should == @user
+      end
+      
     end
     
   end

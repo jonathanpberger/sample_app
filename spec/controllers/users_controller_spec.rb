@@ -43,6 +43,28 @@ describe UsersController do
       get :new
       response.should have_tag("title",/Sign up/)
     end
+        # I'm having trouble passing vars into the "input" tag, so I'm going to punt on this test for now 
+        #
+        # it "should have a name field" do
+        #   get :new
+        #   response.should have_tag("input[name=user[name][type=text]", "user[name]","text")
+        # end
+        # 
+        # it "should have an email field" do
+        #   get :new
+        #   response.should have_tag("input[name=user_email][type=text]", "user[email]","text")
+        # end
+        # 
+        # it "should have a password field" do
+        #   get :new
+        #   response.should have_tag("input[password=?][type=?]", "user[password]","password")
+        # end
+        # 
+        # it "should have a confirmation field" do
+        #   get :new
+        #   response.should have_tag("input[password_confirmation=?][type=?]", "user[password_confirmation]","password")
+        # end
+        # 
   end
 
   describe "POST 'create" do

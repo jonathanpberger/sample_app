@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100607044757
+# Schema version: 20100607050913
 #
 # Table name: users
 #
@@ -9,6 +9,7 @@
 #  created_at         :datetime
 #  updated_at         :datetime
 #  encrypted_password :string(255)
+#  salt               :string(255)
 #
 
 require 'spec_helper'
@@ -103,11 +104,21 @@ describe User do
     it "should have an encrypted password attribute" do
       @user.should respond_to(:encrypted_password)
     end
-  end
   
     it "should set the encrypted password" do
       @user.encrypted_password.should_not be_blank
     end
+    
+    describe "has_password? method" do
+      it "should be true if passwords match" do
+        @user.has_password?(@attr[:password]).should be_true
+      end
+      
+      it "should be false if passwords don't match" do
+        @user.has_password?("invalid").should be_false
+      end
+    end
+    
   end
 
 end
